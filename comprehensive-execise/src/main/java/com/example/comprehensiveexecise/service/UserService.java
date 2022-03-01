@@ -26,4 +26,23 @@ public class UserService {
         sqlSession.close();
         return  user;
     }
+
+    public boolean regist(String username,String password){
+        // 2.获取sqlSession
+        SqlSession sqlSession = factory.openSession();
+        // 3.获取UserMapper
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+        // 4. 调用方法
+        //检查账号是否已被注册
+        User user = mapper.findUserByName(username);
+        if (user==null){
+            mapper.addUser(username,password);
+        }
+
+        // 5. 释放容器
+        sqlSession.close();
+        return  user==null;
+    }
+
+
 }

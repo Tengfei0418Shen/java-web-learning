@@ -15,4 +15,13 @@ public class UserMapperTest {
             log.info(String.valueOf(user));
         }
     }
+    @Test
+    void regist() {
+        UserService userService = new UserService();
+        boolean user = userService.regist("zhangsan1","123");
+        System.out.println(user);
+//        if(user!=null){
+//            log.info(String.valueOf(user));
+//        }
+    }
 }

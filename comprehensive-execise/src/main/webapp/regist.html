@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .form{
+            width: 400px;
+            height: 300px;
+            background-color: aqua;
+            /*text-align: center;*/
+        }
+        .form input{
+            display: block;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+<div class="form">
+    <form action="/regist" method="post">
+        <label for="">
+            账号:<input type="text" name="username" >
+        </label>
+        <label for="">
+            密码:<input type="password" name="password" >
+        </label>
+
+        <label for="">
+            确认密码:<input type="password" name="repassword">
+        </label>
+        <label for="">
+            验证码:<input style="display: inline-block" type="text" name="code" ><img src="/code" id="verifyCode" alt="">
+        </label>
+
+        <input type="submit" value="注册">
+        <a href="/login.html">已有账号,去登录</a>
+    </form>
+</div>
+</body>
+<script>
+    window.onload=function (){
+        const img = document.getElementById("verifyCode");
+        img.onclick = function (){
+            // 加时间戳
+            const date = new Date().getTime();
+            img.src = "/code?"+date;
+        }
+    }
+</script>
+</html>
