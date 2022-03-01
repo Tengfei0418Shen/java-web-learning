@@ -1,48 +1,89 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Administrator
-  Date: 2022/3/1
-  Time: 12:25
-  To change this template use File | Settings | File Templates.
---%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>Title</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/bootstrap-theme.css">
     <style>
-        .form{
-            width: 350px;
-            height: 300px;
-            /*text-align: center;*/
-        }
-        .form input{
-            /*display: block;*/
-            font-size: 14px;
-        }
+        #success_message{ display: none;}
     </style>
 </head>
 <body>
-<form class="form" action="${pageContext.request.contextPath}/add" method="post">
-    <label for="">
-        序号: <input type="text" name="id" height="true" value="">
-    </label><br>
-    <label for="">
-        品牌名称: <input type="text" name="brandname" height="true" value="">
-    </label><br>
-    <label for="">
-        企业名称: <input type="text" name="businessname" height="true" value="">
-    </label><br>
-    <label for="">
-        排序: <input type="text" name="order1" height="true" value="">
-    </label><br>
-    <label for="">
-        描述信息: <textarea name="detailinfo"  cols="30" rows="5"></textarea>
-    </label><br>
-    <label for="">
-        状态: 禁用<input type="radio" name="status" value="false">
-        启用<input type="radio" name="status" value="true">
-    </label><br>
-    <input type="submit" value="添加">
-</form>
+<div class="container">
+
+    <form class="well form-horizontal" action="/add" method="post"  id="contact_form">
+        <fieldset>
+            <!-- Text input-->
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">品牌名称</label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input  name="brandname"  class="form-control"  type="text">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label">企业名称</label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input  name="businessname" class="form-control"  type="text">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label">排序</label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input  name="order1" class="form-control"  type="text">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Text area -->
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">描述信息</label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                        <textarea class="form-control" name="detailinfo"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- radio checks -->
+            <div class="form-group">
+                <label class="col-md-4 control-label">状态</label>
+                <div class="col-md-4">
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="status" value="false" /> 禁用
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="status" value="true" /> 启用
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Button -->
+            <div class="form-group">
+                <label class="col-md-4 control-label"></label>
+                <div class="col-md-4">
+                    <button type="submit" class="btn btn-warning" >添加 <span class="glyphicon glyphicon-send"></span></button>
+                </div>
+            </div>
+
+        </fieldset>
+    </form>
+</div>
 </body>
 </html>

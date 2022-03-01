@@ -5,6 +5,7 @@
 <html>
 <head>
     <title>JSP - Hello World</title>
+    <link rel="stylesheet" href="css/dashbord.css">
     <style>
         table{
             border: 1px  solid #000;
@@ -28,8 +29,12 @@
 <input type="button" onclick="location='${pageContext.request.contextPath}/addBrand.jsp'" value="新增">
 <hr>
 <br>
-<table>
-    <tr>
+
+
+<div class="table-responsive">
+    <table class="table table-striped table-sm">
+        <thead>
+        <tr>
         <td>序号</td>
         <td>品牌名称</td>
         <td>企业名称</td>
@@ -38,7 +43,8 @@
         <td>状态</td>
         <td>操作</td>
     </tr>
-
+        </thead>
+        <tbody>
         <%
             for (Brand brand:brands){
                 pageContext.setAttribute("brand",brand);
@@ -58,7 +64,9 @@
         <%
             }
         %>
+        </tbody>
 </table>
+</div>
 <br/>
 </body>
 </html>

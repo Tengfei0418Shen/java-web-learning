@@ -1,51 +1,78 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="utf-8">
+
+    <title>登录</title>
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+
+
+
     <style>
-        .form{
-            width: 400px;
-            height: 300px;
-            background-color: aqua;
-            /*text-align: center;*/
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
         }
-        .form input{
-            display: block;
-            font-size: 14px;
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
         }
     </style>
+
+
+    <!-- Custom styles for this template -->
+    <link href="css/floating-label.css" rel="stylesheet">
 </head>
 <body>
-<div class="form">
-    <form action="/regist" method="post">
-        <label for="">
-            账号:<input type="text" name="username" >
-        </label>
-        <label for="">
-            密码:<input type="password" name="password" >
-        </label>
 
-        <label for="">
-            确认密码:<input type="password" name="repassword">
-        </label>
-        <label for="">
-            验证码:<input style="display: inline-block" type="text" name="code" ><img src="/code" id="verifyCode" alt="">
-        </label>
+<form class="form-signin"  action="/regist" method="post">
+    <div class="text-center mb-4">
+        <img class="mb-4" src="images/main.png" alt="" width="72" height="72">
+        <h1 class="h3 mb-3 font-weight-normal">注册页面</h1>
+        </div>
 
-        <input type="submit" value="注册">
-        <a href="/login.html">已有账号,去登录</a>
-    </form>
-</div>
+    <div class="form-label-group">
+        <input type="text" id="inputEmail" name="username" class="form-control"  required autofocus>
+        <label for="inputEmail">用户名</label>
+    </div>
+
+    <div class="form-label-group">
+        <input type="password" id="inputPassword" name="password" class="form-control" required>
+        <label for="inputPassword">密码</label>
+    </div>
+
+    <div class="form-label-group">
+        <input type="password" id="inputRePassword" name="repassword" class="form-control" required>
+        <label for="inputPassword">确认密码</label>
+    </div>
+
+    <div class="form-label-group">
+        <input type="text"  name="code" class="form-control-my" style="width: 50%" required><img style="float: right" id="verifyCode" src="/code" alt="">
+        <label for="inputPassword">验证码</label>
+
+
+    </div>
+
+    <button class="btn btn-lg btn-primary btn-block" type="submit">注册</button>
+    <a href="/login.html">已有账号?去登录</a>
+</form>
+
+
+
 </body>
 <script>
-    window.onload=function (){
-        const img = document.getElementById("verifyCode");
-        img.onclick = function (){
-            // 加时间戳
-            const date = new Date().getTime();
-            img.src = "/code?"+date;
-        }
+    const img = document.getElementById("verifyCode");
+    img.onclick = function (){
+        // 加时间戳
+        const date = new Date().getTime();
+        img.src = "/code?"+date;
     }
 </script>
 </html>
