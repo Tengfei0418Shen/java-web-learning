@@ -44,5 +44,19 @@ public class UserService {
         return  user==null;
     }
 
+    public boolean check(String username){
+        // 2.获取sqlSession
+        SqlSession sqlSession = factory.openSession();
+        // 3.获取UserMapper
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+        // 4. 调用方法
+        //检查账号是否已被注册
+        User user = mapper.findUserByName(username);
+
+        // 5. 释放容器
+        sqlSession.close();
+        return  user==null;
+    }
+
 
 }

@@ -39,8 +39,9 @@
         </div>
 
     <div class="form-label-group">
-        <input type="text" id="inputEmail" name="username" class="form-control"  required autofocus>
-        <label for="inputEmail">用户名</label>
+        <input type="text" id="username" name="username" class="form-control"  required autofocus>
+        <label for="username">用户名</label>
+        <span id="clue" style="color: red;display: none">用户名已存在</span>
     </div>
 
     <div class="form-label-group">
@@ -68,6 +69,23 @@
 
 </body>
 <script>
+    document.getElementById("username").onblur = function (){
+        var value = this.value;
+        var clue = document.getElementById("clue");
+        let xHttp = new XMLHttpRequest();
+        xHttp.open("GET","http://localhost:8080/check?username="+value);
+        xHttp.send();
+        xHttp.onreadystatechange = function (){
+            if (this.readyState ==4 && this.status==200){
+                if (this.responseText==="true"){
+                    clue.style.display="none";
+                }else{
+                    clue.style.display="block";
+                }
+            }
+        }
+    }
+
     const img = document.getElementById("verifyCode");
     img.onclick = function (){
         // 加时间戳

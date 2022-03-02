@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ajax起步请求hello项目---axios异步请求</title>
+</head>
+<body>
+<button id="btn">请求</button>
+<hr>
+<h2 id="info"></h2>
+</body>
+<script>
+    document.getElementById("btn").onclick = function (){
+        // axios({
+        //         methed:"get",
+        //     url:"/ajaxServlet1?username=zhangsan"
+        // }
+        // ).then(function (resp){
+        //     document.getElementById("info").innerHTML = resp.data
+        // })
+        // axios.get("/ajaxServlet1?username=zhangsan").then(function (resp){
+        //     document.getElementById("info").innerHTML = resp.data
+        // })
+        axios({
+                methed:"post",
+                url:"/ajaxServlet1",
+            data:"username=zhangsan"
+            }
+        ).then(function (resp){
+            document.getElementById("info").innerHTML = resp.data
+        })
+        // axios.post("/ajaxServlet1","username=zhangsan").then(function (resp){
+        //     document.getElementById("info").innerHTML = resp.data
+        // })
+    }
+</script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</html>

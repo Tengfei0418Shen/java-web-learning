@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ajax起步请求hello项目---原生的JS异步请求</title>
+</head>
+<body>
+<h1 id="myText">JS定时器</h1>
+<input type="text" id="time">
+<button id="stop">停止</button>
+<hr>
+<h2 id="info"></h2>
+</body>
+<script>
+    let timer = setInterval(changeTime(),1000);
+
+    function changeTime(){
+        d = new Date();
+    }
+
+    var btn = document.getElementById("stop");
+    btn.onclick = function (){
+        // timer.
+    }
+
+    setTimeout(function (){
+        // 1. 创建核心对象
+        let xHttp;
+        if (window.XMLHttpRequest){
+            xHttp = new XMLHttpRequest();
+        }else{
+            // for IE6 IE5
+            xHttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        // 2.发送请求
+        xHttp.open("GET","http://localhost:8080/ajaxServlet");
+        xHttp.send();
+        // 3. 获取响应
+        xHttp.onreadystatechange = function (){
+            // 4.回调函数
+            if (this.readyState == 4 && this.status == 200){
+                document.getElementById("info").innerHTML=this.responseText;
+            }
+        }
+    },2000)
+</script>
+</html>
