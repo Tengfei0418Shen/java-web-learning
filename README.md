@@ -211,7 +211,7 @@
         4. 数组 []
         5. 对象 {}
    
-   # day06 Filter&Listener
+# day06 Filter&Listener
 
 ## 学习目标
 
