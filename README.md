@@ -211,4 +211,105 @@
         4. 数组 []
         5. 对象 {}
    
+   # day06 Filter&Listener
+
+## 学习目标
+
+1. 理解掌握如何编写一个Filter(过滤器)
+2. 理解并掌握Filter的各项配置
+3. 理解并完成登录验证案例和过滤敏感词汇
+4. 理解并掌握动态代理增强某个方法
+5. 理解并掌握ServletContextListener监听器
+6. 了解Session监听和Request监听
+7. 综合案例
+
+## 学习内容
+
+1. Filter快速入门
+
+   * Filter概述
+
+   * Filter快速入门
+
+   * Filter_web.xml配置方式
+
+   * Filter_注解方式
+
+     > ```java
+     > @WebFilter(urlPatterns = "/page/*")
+     > ```
+
+2. Filter执行流程及详细配置
+
+   * filter_细节执行流程&生命周期
+
+     1. 执行`filter1`的放行前代码
+     2. 执行`filter1`的放行代码
+     3. 执行`filter2`的放行前代码
+     4. 执行`filter2`的放行代码
+     5. 访问资源
+     6. 执行`filter2`的放行后代码
+     7. 执行`filter1`的放行后代码
+
+   * filter拦截路径配置
+
+     1. 精确拦截 "/img/1.jpg"
+     2. 目录拦截  "/user/*"
+     3. 后缀名拦截 "/*.do"
+     4. 拦截所有 "/*"
+
+   * Filter_细节_过滤拦截方式配置
+
+     ```xml
+         <filter>
+             <filter-name>filterdemo1</filter-name>
+             <filter-class>com.example.day06.filter.FilterDemo1</filter-class>
+         </filter>
+         <filter-mapping>
+             <filter-name>filterdemo1</filter-name>
+             <url-pattern>/*</url-pattern>
+         </filter-mapping>
+     ```
+
+     
+
+3. 登录验证案例
+
+   1. 需求:访问服务器资源时,需要先进行登陆验证,如果没有登陆,自动跳转到登陆页面
+   2. 分析:
+
+4. 过滤敏感词汇案例及动态代理
+
+   1. Filter_案例2_过滤敏感词汇_分析
+   2. 动态代理1_基本实现步骤
+   3. 动态代理2_增强方法
+   4. Filter_案例2_过滤敏感词汇_实现
+
+5. Listener
+
+   1. Listener的概述
+
+      * web三大组件
+
+      * 事件监听机制
+
+        > 事件
+        >
+        > 事件源
+        >
+        > 监听器
+        >
+        > 注册监听
+
+   2. Listener_servletContextListener的使用
+
+   3. SessionListener
+
+   4. RequestListener
+
+   5. 在线用户案例
+
+   6. javaweb监听器
+
+6. 综合案例
 
