@@ -106,5 +106,109 @@
      * session的数据想要共享,浏览器不能关闭,所以session数据不能创奇保存数据
      * cookie是存储在客户端,是可以长期保存的
 
+# day05 Ajax
+
+## 学习目标
+
+1. 能够使用原生的Ajax请求
+2. 能够使用axios发送Ajax请求
+3. 熟悉JSON格式,并能使用Fastjson完成Java对象和JSON串的相互转换
+4. 使用Axios+json完成综合案例
+
+## 学习内容
+
+1. Ajax描述:
+
+   * Ajax :异步的Javascript和XMl  Asynchronous Javascript and XML
+
+   * 作用:
+
+     1. 异步交互,不需要加载整个页面且与服务器交换数据,然后更新部分网页
+
+     2. 与数据库进行数据交换
+
+        ajax+html 替换 jsp
+
+   * 同步和异步
+
+
+     1. 同步:浏览器页面在发送请求给浏览器,在服务器处理请求的过程中,浏览器页面不能做其他的操作.只能等到服务器响应结束,浏览器页面才能做其他操作
+     2. 异步:浏览器页面发送是那个请求给浏览器,在服务器处理请求的过程中,浏览器还可以做其他的操作
+
+2. 快速入门
+
+   * Ajax的起步联系
+
+     1. 服务端返回数据
+
+     2. 前端通过XMLHttpRequest对象发起异步请求
+
+        ```javascript
+        // 1.创建核心对象
+        let xHttp = new XMLHttpRequset();
+        // 2.发送请求
+        xHttp.open("GET","http://localhost:8080/getData");
+        xHttp.send();
+        // 3.获取响应
+        xHttp.onreadystatechange = function () {
+            // 4.回调函数处理响应
+            if(this.readystate == 4 && this.status==200){
+                console.log(this.responceText);
+            }
+        }
+        ```
+
+        
+
+     3. 在回调函数中做页面渲染处理
+
+3. 案例
+
+   1. 需求:在完成用户组测试,当用户输入框失去焦点时,校验用户名是否已存在
+
+   2. 分析
+
+      1. 前端完成的逻辑
+
+         1. 给用户名输入框绑定光标失去焦点事件`onblur`
+
+         2. 发送ajax请求,携带username参数
+
+            > `/check?username` + username
+
+         3. 处理响应:是否显示提示信息
+
+      2. 后端完成的罗技
+
+         1.  接收username用户名
+         2. 调用service查询user
+         3. 返回提示信息
+
+4. Axios
+
+   1. Axios 对原生的Ajax进行封装,简化了Ajax请求的步骤书写.
+
+      > axios官网  https://www.axios-http.cn
+
+   2. 基本使用
+
+      * 导入axios的js包
+      * 使用axios发送请求,并获取响应结果
+
+   3. 说明
+
+      * `axios()`是用来发送异步请求的,小括号中使用js对象传递请求相关的参数
+      * `then()`需要传递一个匿名函数,传递的匿名函数称为回调函数,意思是该匿名函数在发送请求时不会被调用,而是在成功响应候调用的函数.而该回调函数中的`resp`参数是对响应的数据进行封装的对象,通过`resp.data`可以获取到响应的数据
+
+5. JSON
+
+   1. JSON规定
+      * key必须是字符串
+      * value
+        1. 数字
+        2. 字符串
+        3. 布尔值 
+        4. 数组 []
+        5. 对象 {}
    
 
