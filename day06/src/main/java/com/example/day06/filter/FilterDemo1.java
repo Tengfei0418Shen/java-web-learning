@@ -5,7 +5,7 @@ import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
 
-@WebFilter(urlPatterns = "/*")
+//@WebFilter(urlPatterns = "/*")
 public class FilterDemo1 implements Filter {
 
 
