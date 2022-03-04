@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+
+    <title>登录</title>
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/fileupload.css" rel="stylesheet">
+    <script src="js/jquery.js"></script>
+
+
+
+    <style>
+
+
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
+
+
+    <!-- Custom styles for this template -->
+    <link href="css/floating-label.css" rel="stylesheet">
+</head>
+<body>
+
+<form class="form-signin"  action="/upload" method="post" enctype="application/x-www-form-urlencoded">
+    <div class="text-center mb-4">
+        <img class="mb-4" src="images/main.png" alt="" width="72" height="72">
+        </div>
+
+    <div class="form-label-group">
+        <input type="text" id="username" name="username" class="form-control"  required autofocus>
+        <label for="username">用户名</label>
+    </div>
+
+    <div class="form-label-group">
+        <input type="password" id="password" name="password" class="form-control" required>
+        <label for="password">密码</label>
+    </div>
+
+    <div class="checkbox mb-3">
+        <input type="file" name="file">
+<!--        <div class="file-upload">-->
+<!--            <div class="file-select">-->
+<!--                <div class="file-select-button" id="fileName">选择文件</div>-->
+<!--                <div class="file-select-name" id="noFile">未选择文件</div>-->
+<!--                <input type="file" name="file" id="chooseFile">-->
+<!--            </div>-->
+<!--        </div>-->
+    </div>
+    <button class="btn btn-lg btn-primary btn-block" onclick="print()" type="submit">上传</button>
+</form>
+
+
+
+</body>
+<script>
+    window.onload = function (){
+        function print(){
+            console.log(document.getElementsByTagName("form")[0].dataset);
+        }
+        // function getCookie(cname)
+        // {
+        //     var name = cname + "=";
+        //     var ca = document.cookie.split(';');
+        //     for(var i=0; i<ca.length; i++)
+        //     {
+        //         var c = ca[i].trim();
+        //         if (c.indexOf(name)==0) return c.substring(name.length,c.length);
+        //     }
+        //     return "";
+        // }
+        //
+        // document.getElementById("username").value = getCookie("username");
+        // document.getElementById("password").value = getCookie("password");
+        // if ( getCookie("username")!==""){
+        //     document.getElementById("check").checked = true;
+        // }
+    }
+
+    // $('#chooseFile').bind('change', function () {
+    //     var filename = $("#chooseFile").val();
+    //     if (/^\s*$/.test(filename)) {
+    //         $(".file-upload").removeClass('active');
+    //         $("#noFile").text("未选择文件");
+    //     }
+    //     else {
+    //         $(".file-upload").addClass('active');
+    //         console.log($("#noFile").text())
+    //         $("#noFile").text(filename.replace("C:\\fakepath\\", ""));
+    //     }
+    // });
+
+</script>
+</html>

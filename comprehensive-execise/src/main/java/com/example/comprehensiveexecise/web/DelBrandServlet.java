@@ -24,6 +24,9 @@ public class DelBrandServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        Integer id = Integer.valueOf(request.getParameter("id"));
+        boolean isdel = brandService.delBrand(id);
+        System.out.println("_____________________"+isdel);
+        response.getWriter().write(String.valueOf(isdel));
     }
 }

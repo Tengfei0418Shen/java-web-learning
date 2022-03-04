@@ -35,14 +35,14 @@
     <table class="table table-striped table-sm">
         <thead>
         <tr>
-        <td>序号</td>
-        <td>品牌名称</td>
-        <td>企业名称</td>
-        <td>排序</td>
-        <td>品牌介绍</td>
-        <td>状态</td>
-        <td>操作</td>
-    </tr>
+            <td>序号</td>
+            <td>品牌名称</td>
+            <td>企业名称</td>
+            <td>排序</td>
+            <td>品牌介绍</td>
+            <td>状态</td>
+            <td>操作</td>
+        </tr>
         </thead>
         <tbody>
         <%
@@ -65,7 +65,7 @@
             }
         %>
         </tbody>
-</table>
+    </table>
 </div>
 <br/>
 </body>

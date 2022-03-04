@@ -16,6 +16,7 @@ public class IndexServlet extends HttpServlet {
     private BrandService brandService = new BrandService();
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         Brand[] allBrands = brandService.getAllBrands();
+
         request.setAttribute("brands",allBrands);
         request.getRequestDispatcher(request.getContextPath()+"/index.jsp").forward(request,response);
     }

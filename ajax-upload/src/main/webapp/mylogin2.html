@@ -32,10 +32,10 @@
 </head>
 <body>
 
-<form class="form-signin"  action="/login" method="post">
+<div class="form-signin">
     <div class="text-center mb-4">
         <img class="mb-4" src="images/main.png" alt="" width="72" height="72">
-        <h1 class="h3 mb-3 font-weight-normal">登录页面</h1>
+        <h1 class="h3 mb-3 font-weight-normal">ajax传JSON形式参数</h1>
         </div>
 
     <div class="form-label-group">
@@ -48,36 +48,28 @@
         <label for="password">密码</label>
     </div>
 
-    <div class="checkbox mb-3">
-        <label>
-            <input type="checkbox" id="check" value="remember-me"> 记住我
-        </label>
-    </div>
-    <button class="btn btn-lg btn-primary btn-block" type="submit">登录</button><a href="/regist.html">没有账号?去注册</a>
-</form>
+
+    <button class="btn btn-lg btn-primary btn-block" id="btn" type="submit">登录</button><a href="/regist.html">没有账号?去注册</a>
+</div>
 
 
 
 </body>
+<script src="js/axios.js"></script>
 <script>
-    window.onload = function (){
-        function getCookie(cname)
-        {
-            var name = cname + "=";
-            var ca = document.cookie.split(';');
-            for(var i=0; i<ca.length; i++)
-            {
-                var c = ca[i].trim();
-                if (c.indexOf(name)==0) return c.substring(name.length,c.length);
-            }
-            return "";
-        }
-
-        document.getElementById("username").value = getCookie("username");
-        document.getElementById("password").value = getCookie("password");
-        if ( getCookie("username")!==""){
-            document.getElementById("check").checked = true;
-        }
+    const btn = document.getElementById("btn");
+    btn.onclick = function () {
+        const username = document.getElementById("username");
+        const password = document.getElementById("password");
+        let obj = {
+            "username": username.value,
+            "password": password.value
+        };
+        axios.post('/login2', obj).then(function (response) {
+            alert(JSON.stringify(response.data))
+        }).catch(function (error) {
+            alert(JSON.stringify(error));
+        });
     }
 </script>
 </html>

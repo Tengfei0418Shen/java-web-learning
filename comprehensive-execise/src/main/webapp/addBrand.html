@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>新增</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/bootstrap-theme.css">
+    <style>
+        #success_message{ display: none;}
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <form class="well form-horizontal" id="contact_form">
+        <fieldset>
+            <!-- Text input-->
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">品牌名称</label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input id="brandname"  name="brandname"  class="form-control"  type="text">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label">企业名称</label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input  name="businessname" id="businessname" class="form-control"  type="text">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label">排序</label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input  name="order1" id="order1" class="form-control"  type="text">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Text area -->
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">描述信息</label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                        <textarea class="form-control" name="detailinfo" id="detailinfo"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- radio checks -->
+            <div class="form-group">
+                <label class="col-md-4 control-label">状态</label>
+                <div class="col-md-4">
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="status" id="status" value="false"/> 禁用
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="status"  id="status1" value="true"  /> 启用
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Button -->
+            <div class="form-group">
+                <label class="col-md-4 control-label"></label>
+                <div class="col-md-4">
+                    <button type="button" id="btn" class="btn btn-warning" >添加 <span class="glyphicon glyphicon-send"></span></button>
+                </div>
+            </div>
+
+        </fieldset>
+    </form>
+</div>
+</body>
+<script src="js/axios.js"></script>
+<script>
+    document.getElementById("btn").onclick = function (){
+        var brandname = document.getElementById("brandname").value;
+        var businessname = document.getElementById("businessname").value;
+        var order1 = document.getElementById("order1").value;
+        var detailinfo = document.getElementById("detailinfo").value;
+        var status = document.getElementById("status").checked;
+        status = status?false:true;
+        axios({
+            method:"post",
+            url:"http://localhost:8080/add1",
+            data:"brandname="+brandname+"&"+"status="+status+"&"+"detailinfo="+detailinfo+"&"+"order1="+order1+"&"+"businessname="+businessname
+        }).then((resp)=>{
+            if (resp.data){
+                alert("添加成功")
+                window.location.href="/brand.html"
+            }
+            // window.location.href="/brand.html"
+
+        })
+    }
+
+
+
+</script>
+</html>

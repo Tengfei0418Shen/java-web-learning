@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>主页</title>
+    <link rel="stylesheet" href="css/dashbord.css">
+    <script src="js/axios.js"></script>
+    <style>
+        table{
+            border: 1px  solid #000;
+        }
+        tr{
+            height: 20px;
+        }
+        tr td{
+            width: 100px;
+        }
+    </style>
+</head>
+<body>
+
+<h1> </h1>
+<input type="button" onclick="location='/addBrand.html'" value="新增">
+<hr>
+<div class="table-responsive">
+    <table class="table table-striped table-sm">
+        <thead>
+        <tr>
+            <td>序号</td>
+            <td>品牌名称</td>
+            <td>企业名称</td>
+            <td>排序</td>
+            <td>品牌介绍</td>
+            <td>状态</td>
+            <td>操作</td>
+        </tr>
+        </thead>
+        <tbody id="tbody">
+        </tbody>
+    </table>
+</div>
+</body>
+<script>
+    window.onload = function (){
+        function getCookie(cname)
+        {
+            var name = cname + "=";
+            var ca = document.cookie.split(';');
+            for(var i=0; i<ca.length; i++)
+            {
+                var c = ca[i].trim();
+                if (c.indexOf(name)==0) return c.substring(name.length,c.length);
+            }
+            return "";
+        }
+        document.getElementsByTagName("h1")[0].innerHTML =getCookie("username")+ "欢迎您"
+        axios({
+            method:"GET",
+            url:"http://localhost:8080/getBrands"
+        }).then((resp)=>{
+            var brands = resp.data;
+            var tbodyInnerHTML="";
+            for (let brand of brands) {
+                // console.log(brand["id"])
+                tbodyInnerHTML +=  "<tr>" +
+                    "<td>"+brand["id"]+"</td>" +
+                    "<td>"+brand["brandname"]+"</td>" +
+                    "<td>"+brand["businessname"]+"</td>" +
+                    "<td>"+brand["order1"]+"</td>" +
+                    "<td>"+brand["detailinfo"]+"</td>" +
+                    "<td>"+brand["status"]+"</td>" +
+                    "<td>" +
+                    "<a href=\"/upd?id="+brand["id"]+"\">修改</a>"+
+                    "<a href=\"javascript:;\" onclick=\'del("+brand["id"]+")\'>删除</a>"+
+                    "</td>"+
+                    "</tr>";
+            }
+            console.log(tbodyInnerHTML)
+            document.getElementById("tbody").innerHTML = tbodyInnerHTML
+        })
+    }
+
+    function del(id){
+        if (confirm("确定删除吗?")){
+            // var xHttp = new XMLHttpRequest();
+            // xHttp.append("id",id);
+            // xHttp.open("POST","http://localhost:8080/delBrand");
+            // xHttp.send();
+            // xHttp.onreadystatechange = function (){
+            //     if (this.readyState==4&&this.status==200){
+            //         alert("删除成功")
+            //     }
+            // }
+            axios({
+                method:"post",
+                url:"http://localhost:8080/delBrand",
+                data:"id="+id
+            }).then((resp)=> {
+                console.log(resp.data)
+                if (resp.data){
+                    window.location.href="/brand.html";
+                }
+            })
+        }
+
+
+    }
+
+</script>
+</html>

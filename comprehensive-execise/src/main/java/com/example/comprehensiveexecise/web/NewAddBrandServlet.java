@@ -1,15 +1,21 @@
 package com.example.comprehensiveexecise.web;
 
 import com.example.comprehensiveexecise.service.BrandService;
-import jakarta.servlet.*;
-import jakarta.servlet.http.*;
-import jakarta.servlet.annotation.*;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-@WebServlet("/add")
-public class AddBrandServlet extends HttpServlet {
-    private final BrandService brandService = new BrandService();
+@WebServlet("/add1")
+public class NewAddBrandServlet extends HttpServlet {
+    private BrandService brandService = new BrandService();
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        this.doPost(request,response);
+    }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -23,8 +29,6 @@ public class AddBrandServlet extends HttpServlet {
 
 
         boolean isAdd = brandService.addBrand(brandname, businessname, order1, detailinfo, status);
-        if (isAdd){
-            response.getWriter().println("<html><script>alert(\"添加成功\");location=\"/index\"</script></html>");
-        }
+        response.getWriter().write(String.valueOf(isAdd));
     }
 }

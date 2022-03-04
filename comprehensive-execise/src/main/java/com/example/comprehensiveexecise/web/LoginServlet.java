@@ -33,16 +33,25 @@ public class LoginServlet extends HttpServlet {
         // 3.判断
         if(user != null){
             //非空
-
             //判断是否勾选"记住我"
             if ("on".equals(remember)){
-                System.out.println("需要记入Cookie");
                 // 1.创建Cookie对象
                 Cookie cUserName = new Cookie("username", username);
                 Cookie cPassWord = new Cookie("password", password);
+                System.out.println("需要记入Cookie");
                 // 2. 设置存活时间
-                cUserName.setMaxAge(60 *60 *24 *7);
-                cPassWord.setMaxAge(60 *60 *24 *7);
+                cUserName.setMaxAge(60 *60 *24);
+                cPassWord.setMaxAge(60 *60 *24);
+                // 3.发送
+                response.addCookie(cPassWord);
+                response.addCookie(cUserName);
+
+            }else{
+                // 1.创建Cookie对象
+                Cookie cUserName = new Cookie("username", username);
+                Cookie cPassWord = new Cookie("password", password);
+                cUserName.setMaxAge(0);
+                cPassWord.setMaxAge(0);
                 // 3.发送
                 response.addCookie(cPassWord);
                 response.addCookie(cUserName);

@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+
+    <title>登录</title>
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/fileupload.css" rel="stylesheet">
+    <script src="js/jquery.js"></script>
+
+
+
+    <style>
+        #preview{
+            width: 200px;
+            height: 150px;
+            display: none;
+            position: absolute;
+            top: 300px;
+            right:20px
+        }
+
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
+
+
+    <!-- Custom styles for this template -->
+    <link href="css/floating-label.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="form-signin">
+    <div class="text-center mb-4">
+        <img class="mb-4" src="images/main.png" alt="" width="72" height="72">
+        </div>
+
+    <div class="form-label-group">
+        <input type="text" id="username" name="username" class="form-control"  required autofocus>
+        <label for="username">用户名</label>
+    </div>
+
+    <div class="form-label-group">
+        <input type="password" id="password" name="password" class="form-control" required>
+        <label for="password">密码</label>
+    </div>
+
+    <div class="checkbox mb-3">
+        <div class="file-upload">
+            <div class="file-select">
+                <div class="file-select-button" id="fileName">选择文件</div>
+                <div class="file-select-name" id="noFile">未选择文件</div>
+                <input type="file" name="file" id="chooseFile">
+            </div>
+        </div>
+    </div>
+    <button class="btn btn-lg btn-primary btn-block" onclick="sub()" type="submit">上传</button>
+</div>
+<img id="preview" src="" alt="">
+</body>
+<script src="js/axios.js"></script>
+<script>
+
+    function sub (){
+        var file = document.getElementById("chooseFile");
+        //alert(file.file[0].name)
+        const username = document.getElementById("username").value;
+        let formData = new FormData();
+        //账号
+        formData.append("username", username);
+        //选中的图片
+        formData.append("file", file.files[0])
+       axios({
+           method:"POST",
+           url:"/upload1",
+           headers: {'Content-Type': 'multipart/form-data'},
+           data: formData
+       }).then((res)=>{
+           let img = document.getElementById("preview");
+           //注意JS设置属性的值，要用引号包裹，这里用的是反引号（模板字符串）包裹返回的路径变量
+           setTimeout(()=>{
+               img.src =`${res.data}`;
+               //预览图片设为可见
+               img.style.display = 'block';
+               },5000)
+
+       })
+    }
+
+    $('#chooseFile').bind('change', function () {
+        var filename = $("#chooseFile").val();
+        if (/^\s*$/.test(filename)) {
+            $(".file-upload").removeClass('active');
+            $("#noFile").text("未选择文件");
+        }
+        else {
+            $(".file-upload").addClass('active');
+            console.log($("#noFile").text())
+            $("#noFile").text(filename.replace("C:\\fakepath\\", ""));
+        }
+    });
+
+</script>
+</html>
